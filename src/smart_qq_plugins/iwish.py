@@ -21,3 +21,6 @@ def iwish_group(msg, bot):
     elif re.match("晓彤", msg.content):
         bot.reply_msg(msg, return_function=True)("记得上近代史😯 😯 ")
         logger.info("INPUT: " + msg.content)
+    elif re.match(".*反弹.*", msg.content):
+        bot.reply_msg(msg, return_function=True)(msg.content)
+        logger.info("INPUT: " + msg.content)

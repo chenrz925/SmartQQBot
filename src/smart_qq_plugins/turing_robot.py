@@ -10,6 +10,7 @@ from smart_qq_bot.signals import (
     on_group_message
 )
 from smart_qq_bot.messages import GROUP_MSG;
+import datetime
 
 # 使用前请先前往 http://www.tuling123.com/register/index.jhtml
 # 申请 API key 谢谢
@@ -25,29 +26,29 @@ def turing_robot(msg, bot):
     :type bot: smart_qq_bot.bot.QQBot
     :type msg: smart_qq_bot.messages.QMessage
     """
-
-    querystring = {
-        "key": apikey,
-        "info": msg.content,
-        "userid": msg.src_sender_id
-    }
-    try:
-        response = requests.request("GET", url, params=querystring)
-        response_json = response.json()
-        bot.reply_msg(msg, response_json.get('text'))
+    if datetime.datetime.now().minute % 2 == 0:
         try:
-            bot.reply_msg(msg, response_json.get('url'))
-        except AttributeError:
-            logger.info("No URL!")
-    except NotImplementedError:
-        querystring = {
-            "key": apikey,
-            "info": msg.content
-        }
-        response = requests.get(url, params=querystring);
-        response_json = response.json()
-        bot.reply_msg(msg, response_json.get('text'))
-        try:
-            bot.reply_msg(msg, response_json.get('url'))
-        except AttributeError:
-            logger.info("No URL!")
+            querystring = {
+                "key": apikey,
+                "info": msg.content,
+                "userid": msg.src_sender_id
+            }
+            response = requests.request("GET", url, params=querystring)
+            response_json = response.json()
+            bot.reply_msg(msg, response_json.get('text'))
+            try:
+                bot.reply_msg(msg, response_json.get('url'))
+            except AttributeError:
+                logger.info("No URL!")
+        except NotImplementedError:
+            querystring = {
+                "key": apikey,
+                "info": msg.content
+            }
+            response = requests.get(url, params=querystring);
+            response_json = response.json()
+            bot.reply_msg(msg, response_json.get('text'))
+            try:
+                bot.reply_msg(msg, response_json.get('url'))
+            except AttributeError:
+                logger.info("No URL!")
