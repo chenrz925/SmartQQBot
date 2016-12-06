@@ -1,0 +1,11 @@
+{
+  "plugin_packages": [],
+  "plugin_on": [
+      "basic",
+      "manager",
+      "weather",
+      "iwish",
+      "satoru",
+      "turing_robot"
+  ]
+}
