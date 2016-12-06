@@ -6,11 +6,11 @@
 *.egg-info
 
 # Mr.Data
-*.tucao
-*.cmd
-*.log
-v.jpg
-cookie
+#*.tucao
+#*.cmd
+#*.log
+#v.jpg
+#cookie
 
 # Mr.Conf
-*.json
+#*.json
